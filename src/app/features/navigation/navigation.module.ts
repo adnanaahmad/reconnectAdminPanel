@@ -10,11 +10,13 @@ import {DashboardComponent} from '../pages/dashboard/dashboard.component';
 import {UserComponent} from '../pages/user/user.component';
 import {IconsComponent} from '../pages/icons/icons.component';
 import {TypographyComponent} from '../pages/typography/typography.component';
+import {LoadingBarModule} from '@ngx-loading-bar/core';
 
 @NgModule({
   imports: [
     NavigationRoutingModule,
     SharedModule,
+    LoadingBarModule,
   ],
   declarations: [
     AdminLayoutComponent,

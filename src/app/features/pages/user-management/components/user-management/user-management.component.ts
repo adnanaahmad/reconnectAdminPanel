@@ -27,11 +27,14 @@ export class UserManagementComponent implements OnInit {
     this.getUserList();
   }
   getUserList(): void{
+    this.store.updateProgressBarLoading(true);
     this.userService.getUserList().pipe(take(1)).subscribe(res => {
       console.log(res);
       this.users.list = res.result;
+      this.store.updateProgressBarLoading(false);
     }, error => {
       console.log(error);
+      this.store.updateProgressBarLoading(false);
     })
   }
   edit(data, id): void{
