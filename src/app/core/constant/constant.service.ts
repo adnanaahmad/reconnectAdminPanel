@@ -16,6 +16,7 @@ export class ConstantService {
     updateUserStatus: `${environment.apiUrl}/admin/user-status`,
   };
   appRoutePaths = {
+    home: '/home',
     userManagement: '/home/user-management',
   }
   appRoutes = [
