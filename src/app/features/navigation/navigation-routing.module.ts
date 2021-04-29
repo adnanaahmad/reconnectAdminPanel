@@ -15,12 +15,16 @@ const routes: Routes = [
         path: 'user-management',
         loadChildren: () => import('../pages/user-management/user-management.module').then(m => m.UserManagementModule)
       },
+      {
+        path: 'top-news',
+        loadChildren: () => import('../pages/top-news/top-news.module').then(m => m.TopNewsModule)
+      },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'icons', component: IconsComponent },
       { path: 'user', component: UserComponent },
       { path: 'typography', component: TypographyComponent }
     ]
-  }
+  },
 ];
 
 @NgModule({

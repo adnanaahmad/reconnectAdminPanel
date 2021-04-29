@@ -1,0 +1,56 @@
+<div class="card mb-0" xmlns="http://www.w3.org/1999/html">
+  <div class="card-header d-flex justify-content-between align-items-start">
+    <h3 class="card-title text-align-center">Create Post</h3>
+    <app-icon-button [buttonClass]="'icon-simple-remove'" (buttonEvent)="close()"></app-icon-button>
+  </div>
+  <div class="card-body">
+    <form>
+        <div class=" form-group">
+          <label> Title </label>
+          <input
+            class=" form-control"
+            placeholder="Add title here ..."
+            type="text"
+          />
+        </div>
+        <div class=" form-group">
+          <label> Description </label>
+          <textarea class=" form-control" placeholder="What's on your mind ?" rows="10"></textarea>
+        </div>
+      <div class="media-files">
+          <div>
+            <img src="https://st.depositphotos.com/1743476/1276/i/600/depositphotos_12765253-stock-photo-smiling-young-man-presenting-product.jpg">
+          </div>
+          <div>
+            <img src="https://source.unsplash.com/random/2">
+          </div>
+        <div>
+          <img src="https://source.unsplash.com/random/3">
+        </div>
+        <div>
+          <img src="https://source.unsplash.com/random/4">
+        </div>
+        <div>
+          <img src="https://source.unsplash.com/random/5">
+        </div>
+        <div>
+          <img src="https://source.unsplash.com/random/6">
+        </div>
+      </div>
+      <div class=" form-group">
+        <label> Media </label>
+        <div class="attachments d-flex justify-content-between align-items-center" [ngClass]="{'dark-border': !(store.theme|async), 'light-border': (store.theme|async)}">
+          <p class="mb-0 text-muted">Add to your post</p>
+          <div class="d-flex justify-content-between post-icons">
+            <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-image-02 standard-icon-size"> </i>
+            <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-video-66 standard-icon-size"> </i>
+            <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-link-72 standard-icon-size"> </i>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-fill btn-primary" type="button">Save</button>
+  </div>
+</div>

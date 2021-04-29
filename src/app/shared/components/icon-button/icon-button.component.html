@@ -1,0 +1,3 @@
+<button class="btn btn-link p-0" (click)="fireEvent()">
+  <i [class]="'vertical-align-base tim-icons standard-icon-size ' + buttonClass" [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}"> </i>
+</button>

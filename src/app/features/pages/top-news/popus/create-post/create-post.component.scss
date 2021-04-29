@@ -1,0 +1,25 @@
+.media-files{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+//  padding: 0 5px;
+}
+.media-files img{
+  width: 155.2px;
+  height: 155.2px;
+  object-fit: cover;
+}
+.media-files div{
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+.media-files div:nth-child(3n){
+  margin-right: 0;
+}
+.attachments{
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.post-icons{
+  width: 100px;
+}

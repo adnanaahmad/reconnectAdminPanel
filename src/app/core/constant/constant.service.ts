@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpHeaders} from '@angular/common/http';
+import {NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,19 @@ export class ConstantService {
   appRoutePaths = {
     home: '/home',
     userManagement: '/home/user-management',
+    topNews: '/home/top-news'
   }
   appRoutes = [
     {
       path: this.appRoutePaths.userManagement,
       title: 'User Management',
       icon: 'icon-single-02',
+      class: ''
+    },
+    {
+      path: this.appRoutePaths.topNews,
+      title: 'Top News',
+      icon: 'icon-bulb-63',
       class: ''
     },
     {
@@ -122,5 +130,9 @@ export class ConstantService {
     APPROVED: 'approved',
     REJECTED: 'rejected',
     BLOCKED: 'blocked'
+  }
+  modalOption: NgbModalOptions = {
+    backdrop: 'static',
+    keyboard: false
   }
 }

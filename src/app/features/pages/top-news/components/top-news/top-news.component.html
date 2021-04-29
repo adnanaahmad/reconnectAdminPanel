@@ -1,0 +1,12 @@
+<div class="content">
+  <div class="d-flex justify-content-center">
+    <div (click)="createPost()" class="add-post justify-content-between d-flex align-items-center" [ngClass]="{'dark-card': !(store.theme|async), 'light-card': (store.theme|async)}">
+      <h4 class="mb-0 text-muted">What's on your mind ?</h4>
+      <div class="d-flex justify-content-between post-icons">
+        <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-pencil"> </i>
+        <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-image-02"> </i>
+        <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-video-66"> </i>
+      </div>
+    </div>
+  </div>
+</div>

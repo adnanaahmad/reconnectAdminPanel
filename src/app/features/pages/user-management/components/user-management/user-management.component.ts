@@ -6,6 +6,7 @@ import {UserManagementService} from '../../services/user-management.service';
 import {take} from 'rxjs/operators';
 import {UserManagementModel} from '../../models/user-management-model';
 import {HelperService} from '../../../../../core/helper/helper.service';
+import {ConstantService} from '../../../../../core/constant/constant.service';
 
 @Component({
   selector: 'app-user-management',
@@ -18,7 +19,8 @@ export class UserManagementComponent implements OnInit {
               private modalService: NgbModal,
               private configuration: NgbModalConfig,
               private userService: UserManagementService,
-              public helper: HelperService,) {}
+              public helper: HelperService,
+              private constant: ConstantService) {}
 
   ngOnInit(): void {
     this.configuration.centered = true;
@@ -36,7 +38,7 @@ export class UserManagementComponent implements OnInit {
     })
   }
   edit(data, index): void{
-    const modalRef = this.modalService.open(UserDetailsComponent);
+    const modalRef = this.modalService.open(UserDetailsComponent, this.constant.modalOption);
     modalRef.componentInstance.user = data;
     modalRef.result.then((result) => {
       if (result.status === 'yes') {

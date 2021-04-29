@@ -1,0 +1,20 @@
+.add-post{
+  width: max-content;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 600px;
+}
+.post-icons{
+  width: 100px;
+}
+.post-icons i{
+  font-size: 16px;
+}
+.dark-card{
+  border: 1px solid;
+  box-shadow: 0 1px 20px 0px rgb(0 0 0 / 10%);
+}
+.light-card{
+  box-shadow: 0px 2px 8px 0 rgb(0 0 0 / 30%);
+}
