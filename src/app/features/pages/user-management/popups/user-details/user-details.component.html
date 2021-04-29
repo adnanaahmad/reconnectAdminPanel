@@ -1,0 +1,20 @@
+<div class="card mb-0">
+  <div class="card-header">
+    <h3 class="card-title text-align-center">Edit</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="account">
+      <div class="">
+        <div class=" form-group">
+          <label> Account Status </label>
+          <select formControlName="status" class="form-control select-form-control-padding">
+            <option [value]="status.value" *ngFor="let status of constant.accountStatus | keyvalue">{{status.value}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button [disabled]="account.invalid" (click)="onSubmit()" class="btn btn-fill btn-primary" type="button">Save</button>
+  </div>
+</div>

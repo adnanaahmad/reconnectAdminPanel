@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+.d-flex{
+  display: flex;
+}
+.align-items-center{
+  align-items: center;
+}
+.dark-icon {
+  color: #9A9A9A;
+}
+
+.dark-icon:hover {
+  color: #ffffff;
+}
+
+.light-icon{
+  color: rgba(34, 42, 66, 0.7);
+}
+
+.light-icon:hover {
+  color: #222a42;
+}

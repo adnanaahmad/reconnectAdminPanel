@@ -1,0 +1,40 @@
+
+<div class="content d-flex full-height">
+  <div class="login-card">
+    <div class="card">
+      <div class="card-header">
+<!--        <p class="title text-align-center">Reconnect-Admin</p>-->
+<!--        <h4 class="title text-align-center">Login</h4>-->
+        <h5 class="card-category text-align-center">Reconnect-Admin</h5>
+        <h3 class="card-title text-align-center">Login</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="login">
+          <div class="">
+              <div class=" form-group">
+                <label> Username </label>
+                <input
+                  formControlName="email"
+                  class=" form-control"
+                  placeholder="Username"
+                  type="text"
+                />
+              </div>
+              <div class=" form-group">
+                <label> Password </label>
+                <input
+                  formControlName="password"
+                  class=" form-control"
+                  placeholder="**********"
+                  type="password"
+                />
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button [disabled]="login.invalid" (click)="onSubmit()" class="btn btn-fill btn-primary" type="button">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

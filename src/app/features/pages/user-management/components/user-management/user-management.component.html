@@ -1,0 +1,41 @@
+<div class=" content">
+  <div class="">
+    <div class="">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">Users</h4>
+        </div>
+        <div class=" card-body">
+          <div class="table-responsive max-table-height">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Signed up at</th>
+                <th>Status</th>
+                <th class=" text-center">Edit</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of users.list; let i = index">
+                <td>{{(user.firstName + ' ' + user.lastName) | titlecase}}</td>
+                <td>{{user.email}}</td>
+                <td>{{helper.resolveCamelCase(user.role) | titlecase}}</td>
+                <td>{{user.createdAt | date}}</td>
+                <td id="{{i}}">{{helper.resolveCamelCase(user.accountStatus) | titlecase}}</td>
+                <td class="td-actions text-center">
+                  <button (click)="edit(user, i)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Status" container="body" >
+                    <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-pencil edit-task"> </i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
