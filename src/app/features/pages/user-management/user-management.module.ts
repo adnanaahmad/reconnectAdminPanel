@@ -13,6 +13,6 @@ import {TitleCasePipe} from '@angular/common';
     UserManagementRoutingModule,
     SharedModule
   ],
-  providers: [TitleCasePipe]
+  providers: []
 })
 export class UserManagementModule { }

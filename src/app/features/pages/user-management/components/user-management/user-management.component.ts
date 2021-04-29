@@ -6,7 +6,6 @@ import {UserManagementService} from '../../services/user-management.service';
 import {take} from 'rxjs/operators';
 import {UserManagementModel} from '../../models/user-management-model';
 import {HelperService} from '../../../../../core/helper/helper.service';
-import {TitleCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-user-management',
@@ -19,8 +18,7 @@ export class UserManagementComponent implements OnInit {
               private modalService: NgbModal,
               private configuration: NgbModalConfig,
               private userService: UserManagementService,
-              public helper: HelperService,
-              private titleCasePipe:TitleCasePipe) {}
+              public helper: HelperService,) {}
 
   ngOnInit(): void {
     this.configuration.centered = true;
@@ -33,16 +31,16 @@ export class UserManagementComponent implements OnInit {
       this.users.list = res.result;
       this.store.updateProgressBarLoading(false);
     }, error => {
-      console.log(error);
+      this.helper.handleApiError(error, 'Failed to fetch user list');
       this.store.updateProgressBarLoading(false);
     })
   }
-  edit(data, id): void{
+  edit(data, index): void{
     const modalRef = this.modalService.open(UserDetailsComponent);
     modalRef.componentInstance.user = data;
     modalRef.result.then((result) => {
       if (result.status === 'yes') {
-        document.getElementById(id).innerHTML = this.titleCasePipe.transform(this.helper.resolveCamelCase(result.data));
+        this.users.list[index] = result.data;
       }
     }, error => {
       console.log(error);

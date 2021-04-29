@@ -123,4 +123,14 @@ export class HelperService {
       }
     })
   }
+  handleApiError(error, msg): void {
+    if (this.constants.RESPONSE_ERRORS[error.error.result.CODE]){
+      this.toaster.error( this.constants.toasterBellIconHTML + ' ' +
+        (error.error.result.details ? error.error.result.details.MESSAGE : error.error.result.details.MESSAGE), '',
+        this.constants.toasterConfiguration.error);
+    } else{
+      this.toaster.error(`${this.constants.toasterBellIconHTML} ${msg}`, '',
+        this.constants.toasterConfiguration.error);
+    }
+  }
 }

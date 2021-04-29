@@ -1,4 +1,4 @@
-const serverUrl = 'https://narsunprojects.com:5000';
+const serverUrl = 'https://narsunprojects.com:5001';
 const clientUrl = 'https://reconnect-narsun.web.app';
 
 export const environment = {

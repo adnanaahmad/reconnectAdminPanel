@@ -34,18 +34,11 @@ export class UserDetailsComponent implements OnInit {
   }
   onSubmit(): void{
     this.userService.updateUserStatus(this.account.value).pipe(take(1)).subscribe(res => {
-      this.activeModal.close({status: 'yes', data: res.result.accountStatus});
+      this.activeModal.close({status: 'yes', data: res.result});
       this.toaster.success(`${this.constant.toasterBellIconHTML} Successfully updated status`, '',
         this.constant.toasterConfiguration.success);
     }, error => {
-      if (this.constant.RESPONSE_ERRORS[error.error.result.CODE]){
-        this.toaster.error( this.constant.toasterBellIconHTML + ' ' +
-          (error.error.result.details ? error.error.result.details.MESSAGE : error.error.result.details.MESSAGE), '',
-          this.constant.toasterConfiguration.error);
-      } else{
-        this.toaster.error(`${this.constant.toasterBellIconHTML} Failed to update status`, '',
-          this.constant.toasterConfiguration.error);
-      }
+      this.helper.handleApiError(error, 'Failed to update status');
     })
   }
   close(): void{

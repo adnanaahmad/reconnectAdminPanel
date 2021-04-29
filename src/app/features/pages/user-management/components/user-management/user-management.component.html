@@ -24,7 +24,7 @@
                 <td>{{user.email}}</td>
                 <td>{{helper.resolveCamelCase(user.role) | titlecase}}</td>
                 <td>{{user.createdAt | date}}</td>
-                <td id="{{i}}">{{helper.resolveCamelCase(user.accountStatus) | titlecase}}</td>
+                <td>{{helper.resolveCamelCase(user.accountStatus) | titlecase}}</td>
                 <td class="td-actions text-center">
                   <button (click)="edit(user, i)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Status" container="body" >
                     <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-pencil edit-task"> </i>
