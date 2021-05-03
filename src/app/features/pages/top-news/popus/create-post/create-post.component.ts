@@ -33,7 +33,7 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     if (this.edit){
-      this.post.media = this.edit.media;
+      this.post.media = [...this.edit.media];
       this.post.form.patchValue({
         title: this.edit.title,
         description: this.edit.description
