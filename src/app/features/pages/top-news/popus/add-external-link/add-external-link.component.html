@@ -1,0 +1,22 @@
+<div class="card mb-0">
+  <div class="card-header d-flex justify-content-between align-items-start">
+    <h3 class="card-title text-align-center">External Link</h3>
+    <app-icon-button [buttonClass]="'icon-simple-remove'" (buttonEvent)="goBackToCreatePost()"></app-icon-button>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="urlForm">
+      <div class=" form-group">
+        <label> Add Url </label>
+        <input
+          formControlName="url"
+          class=" form-control"
+          placeholder="https://www.youtube.com/watch?v=yre5kBxyAOo"
+          type="text"
+        />
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button [disabled]="urlForm.invalid" (click)="addUrl()" class="btn btn-fill btn-primary" type="button">Add</button>
+  </div>
+</div>

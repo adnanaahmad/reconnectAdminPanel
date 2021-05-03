@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminLayoutComponent} from './components/admin-layout/admin-layout.component';
-import {DashboardComponent} from '../pages/dashboard/dashboard.component';
-import {IconsComponent} from '../pages/icons/icons.component';
-import {UserComponent} from '../pages/user/user.component';
-import {TypographyComponent} from '../pages/typography/typography.component';
+import {AuthGuard} from '../../core/authGuard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'user-management',
@@ -19,10 +17,6 @@ const routes: Routes = [
         path: 'top-news',
         loadChildren: () => import('../pages/top-news/top-news.module').then(m => m.TopNewsModule)
       },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'icons', component: IconsComponent },
-      { path: 'user', component: UserComponent },
-      { path: 'typography', component: TypographyComponent }
     ]
   },
 ];

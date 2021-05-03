@@ -15,11 +15,14 @@ export class ConstantService {
     signin: `${environment.apiUrl}/user/signin`,
     getUsers: `${environment.apiUrl}/admin/users`,
     updateUserStatus: `${environment.apiUrl}/admin/user-status`,
+    createPost: `${environment.apiUrl}/feed/create`,
+    getNewsFeed: `${environment.apiUrl}/feed/news-feed`
   };
   appRoutePaths = {
     home: '/home',
     userManagement: '/home/user-management',
-    topNews: '/home/top-news'
+    topNews: '/home/top-news',
+    homeBuying: '/home/home-buying'
   }
   appRoutes = [
     {
@@ -35,27 +38,9 @@ export class ConstantService {
       class: ''
     },
     {
-      path: '/home/dashboard',
-      title: 'Dashboard',
-      icon: 'icon-chart-pie-36',
-      class: ''
-    },
-    {
-      path: '/home/icons',
-      title: 'Icons',
-      icon: 'icon-atom',
-      class: ''
-    },
-    {
-      path: '/home/user',
-      title: 'User Profile',
-      icon: 'icon-single-02',
-      class: ''
-    },
-    {
-      path: '/home/typography',
-      title: 'Typography',
-      icon: 'icon-align-center',
+      path: this.appRoutePaths.homeBuying,
+      title: 'Home Buying 101',
+      icon: 'icon-basket-simple',
       class: ''
     },
 
@@ -110,7 +95,7 @@ export class ConstantService {
     USER: 'user'
   }
   regex = {
-    email: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
+    email: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$',
   }
   toasterConfiguration = {
     success: {
@@ -134,5 +119,10 @@ export class ConstantService {
   modalOption: NgbModalOptions = {
     backdrop: 'static',
     keyboard: false
+  }
+  mediaType = {
+    IMAGE: 'image',
+    VIDEO: 'video',
+    IFRAME: 'iframe'
   }
 }

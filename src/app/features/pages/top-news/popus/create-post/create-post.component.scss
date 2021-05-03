@@ -6,14 +6,28 @@
 }
 .media-files img{
   width: 155.2px;
-  height: 155.2px;
+  height: 100%;
   object-fit: cover;
 }
-.media-files div{
-  margin-right: 2px;
-  margin-bottom: 2px;
+.media-files video{
+  width: 155.2px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.2857rem;
 }
-.media-files div:nth-child(3n){
+.iframe-video{
+  width: 155.2px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.2857rem;
+}
+.media-files div.file{
+  margin-right: 2px;
+  height: 155.2px;
+  margin-bottom: 2px;
+  position: relative;
+}
+.media-files div.file:nth-child(3n){
   margin-right: 0;
 }
 .attachments{
@@ -22,4 +36,9 @@
 }
 .post-icons{
   width: 100px;
+}
+.remove-button{
+  position: absolute;
+  top: 5%;
+  right: 5%;
 }

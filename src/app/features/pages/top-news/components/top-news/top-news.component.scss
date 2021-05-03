@@ -1,3 +1,7 @@
+.news-feed{
+  width: 1000px;
+  overflow-x: hidden;
+}
 .add-post{
   width: max-content;
   padding: 10px 10px 10px 10px;
@@ -11,10 +15,42 @@
 .post-icons i{
   font-size: 16px;
 }
-.dark-card{
+.dark-card-create-post{
   border: 1px solid;
   box-shadow: 0 1px 20px 0px rgb(0 0 0 / 10%);
 }
-.light-card{
+.light-card-create-post{
   box-shadow: 0px 2px 8px 0 rgb(0 0 0 / 30%);
+}
+.media-files img, .media-files video, .iframe-video{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.2857rem 0.2857rem 0 0;
+}
+.media-files{
+  height: 250px;
+  position: relative;
+}
+
+.prev-next-div{
+  position: absolute;
+  top: 45%;
+  width: 90%;
+  left:5%;
+  opacity: 0;
+  transition: opacity .4s;
+}
+.card:hover .prev-next-div{
+  opacity: 1;
+  transition: opacity .4s;
+}
+.card:hover .kebab-button{
+  opacity: 1;
+  transition: opacity .4s;
+}
+.kebab-button{
+  opacity: 0;
+  transition: opacity .4s;
+  z-index: 1000;
 }

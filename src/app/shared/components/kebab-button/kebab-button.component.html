@@ -1,0 +1,4 @@
+<button [ngClass]="{'dark-kebab-icon': !(store.theme|async), 'light-kebab-icon': (store.theme|async)}" class="d-flex flex-column kebab align-items-center"
+        type="button" data-toggle="dropdown">
+  <span *ngFor="let i of [1,2,3]" class="dot"></span>
+</button>

@@ -29,6 +29,12 @@
 .light-border{
   border: 1px solid rgba(29, 37, 59, 0.5);
 }
-.standard-icon-size{
-  font-size: 16px !important;
+.standard-icon-button{
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.standard-icon-button:focus{
+  outline: none;
 }

@@ -1,0 +1,32 @@
+.dot{
+  height: 4px;
+  width: 4px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+}
+.kebab{
+  border: none;
+  border-radius: 1rem;
+  background: transparent;
+  height: fit-content;
+  padding: 0;
+  cursor: pointer;
+}
+.kebab:focus{
+  outline: none;
+}
+.dark-kebab-icon span{
+  background: #9A9A9A;
+}
+
+.dark-kebab-icon:hover span{
+  background: #ffffff;
+}
+
+.light-kebab-icon span{
+  background: rgba(34, 42, 66, 0.7);
+}
+
+.light-kebab-icon:hover span{
+  background: #222a42;
+}

@@ -87,14 +87,6 @@ export class HelperService {
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
     return blob;
   }
-  downPaymentValidator(value: any): ValidateFn<any> {
-    return (control: AbstractControl): any => {
-      if ( parseFloat(control.value) < parseFloat(value)) {
-        return { downPayment: true };
-      }
-      return null;
-    };
-  }
   getEmbeddedVideoURL(url): string {
     if (!url) {
       return null;
@@ -132,5 +124,25 @@ export class HelperService {
       this.toaster.error(`${this.constants.toasterBellIconHTML} ${msg}`, '',
         this.constants.toasterConfiguration.error);
     }
+  }
+  mediaUrlValidator(): ValidateFn<any> {
+    return (control: AbstractControl): any => {
+      if (!control.value){
+        return null;
+      }
+      const validImageUrl = ((control.value).match(/\.(jpeg|jpg|gif|png)$/) != null);
+      const validVideoUrl = ((control.value).match(/\.(mp4|ogg|webm)$/) != null);
+      const validYoutubeUrl = !!(control.value).includes('youtube.com/watch');
+      return !(validImageUrl || validVideoUrl || validYoutubeUrl) ? {validUrl: {value: control.value}} : null;
+    };
+  }
+  validImageUrl(mediaUrl): boolean{
+    return(mediaUrl.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  }
+  validVideoUrl(mediaUrl): boolean{
+    return(mediaUrl.match(/\.(mp4|ogg|webm)$/) != null);
+  }
+  validYoutubeUrl(mediaUrl): boolean{
+    return !!mediaUrl.includes('youtube.com/watch');
   }
 }

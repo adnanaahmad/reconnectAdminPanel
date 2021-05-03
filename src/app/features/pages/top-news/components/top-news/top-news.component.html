@@ -1,12 +1,46 @@
 <div class="content">
-  <div class="d-flex justify-content-center">
-    <div (click)="createPost()" class="add-post justify-content-between d-flex align-items-center" [ngClass]="{'dark-card': !(store.theme|async), 'light-card': (store.theme|async)}">
+  <div class="d-flex justify-content-center mb-5">
+    <div (click)="createPost()" class="add-post justify-content-between d-flex align-items-center" [ngClass]="{'dark-card-create-post': !(store.theme|async), 'light-card-create-post': (store.theme|async)}">
       <h4 class="mb-0 text-muted">What's on your mind ?</h4>
       <div class="d-flex justify-content-between post-icons">
         <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-pencil"> </i>
         <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-image-02"> </i>
         <i [ngClass]="{'dark-icon': !(store.theme|async), 'light-icon': (store.theme|async)}" class="tim-icons icon-video-66"> </i>
       </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="row news-feed">
+      <ng-container *ngFor="let post of topNews.posts">
+        <div class="news-feed-card col-xl-4 col-lg-6 col-md-6">
+          <div class="card">
+            <div class="media-files" *ngIf="post.media && post.media.length > 0">
+              <img *ngIf="post.media[0].type === constant.mediaType.IMAGE" [src]="post.media[0].url">
+              <video *ngIf="post.media[0].type === constant.mediaType.VIDEO" [src]="post.media[0].url" controls></video>
+              <div *ngIf="post.media[0].type === constant.mediaType.IFRAME" class="embed-responsive embed-responsive-16by9 iframe-video">
+                <iframe class="embed-responsive-item" [src]="post.media[0].url | safeUrl" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="post.media.length > 1" class="prev-next-div d-flex justify-content-between">
+                <app-abs-icon-button [buttonClass]="'icon-minimal-left'" (buttonEvent)="previous(post.media)"></app-abs-icon-button>
+                <app-abs-icon-button [buttonClass]="'icon-minimal-right'" (buttonEvent)="next(post.media)"></app-abs-icon-button>
+              </div>
+            </div>
+            <div class="card-header d-flex justify-content-between">
+              <h4 class="mb-0">{{post.title | titlecase}}</h4>
+              <div ngbDropdown placement="bottom-left" class="d-inline-block kebab-button">
+                <app-kebab-button ngbDropdownToggle id="dropdownBasic2"></app-kebab-button>
+                <div class="dropdown-menu-right dropdown-menu show" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <button class="standard-icon-button" ngbDropdownItem>Edit</button>
+                  <button class="standard-icon-button" ngbDropdownItem>Delete</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>{{post.description}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
