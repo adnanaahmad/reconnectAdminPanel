@@ -3,10 +3,11 @@ import {StoreService} from '../../../../../core/store/store.service';
 import {CreatePostComponent} from '../../popus/create-post/create-post.component';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ConstantService} from '../../../../../core/constant/constant.service';
-import {TopNewsModel} from '../../models/post-model';
+import {PostModel, TopNewsModel} from '../../models/post-model';
 import {TopNewsService} from '../../services/top-news.service';
 import {take} from 'rxjs/operators';
 import {HelperService} from '../../../../../core/helper/helper.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-top-news',
@@ -20,7 +21,8 @@ export class TopNewsComponent implements OnInit {
               private configuration: NgbModalConfig,
               private constant: ConstantService,
               private topNewsService: TopNewsService,
-              private helper: HelperService) { }
+              private helper: HelperService,
+              private toaster: ToastrService) { }
 
   ngOnInit(): void {
     this.configuration.centered = true;
@@ -45,6 +47,26 @@ export class TopNewsComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+  editPost(post: PostModel, index: number): void{
+    const modalRef = this.modalService.open(CreatePostComponent, this.constant.modalOption);
+    modalRef.componentInstance.edit = post;
+    modalRef.result.then((result) => {
+      if (result.status === 'yes') {
+        this.topNews.posts[index] = result.data;
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
+  removePost(post: PostModel, index: number): void{
+    this.topNewsService.removePost(post._id).pipe(take(1)).subscribe(res => {
+      this.topNews.posts.splice(index, 1);
+      this.toaster.success(`${this.constant.toasterBellIconHTML} Post Deleted`, '',
+        this.constant.toasterConfiguration.success);
+    }, error => {
+      this.helper.handleApiError(error, 'Failed to delete post');
+    })
   }
   previous(array): void{
     this.leftShift(array);

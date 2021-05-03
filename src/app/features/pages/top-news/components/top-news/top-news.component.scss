@@ -54,3 +54,8 @@
   transition: opacity .4s;
   z-index: 1000;
 }
+@media screen and (max-width: 991px){
+  .dropdown-toggle:after{
+    display: none;
+  }
+}

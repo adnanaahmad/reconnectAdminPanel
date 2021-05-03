@@ -11,7 +11,7 @@
   </div>
   <div class="d-flex justify-content-center">
     <div class="row news-feed">
-      <ng-container *ngFor="let post of topNews.posts">
+      <ng-container *ngFor="let post of topNews.posts; let i = index">
         <div class="news-feed-card col-xl-4 col-lg-6 col-md-6">
           <div class="card">
             <div class="media-files" *ngIf="post.media && post.media.length > 0">
@@ -30,8 +30,8 @@
               <div ngbDropdown placement="bottom-left" class="d-inline-block kebab-button">
                 <app-kebab-button ngbDropdownToggle id="dropdownBasic2"></app-kebab-button>
                 <div class="dropdown-menu-right dropdown-menu show" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                  <button class="standard-icon-button" ngbDropdownItem>Edit</button>
-                  <button class="standard-icon-button" ngbDropdownItem>Delete</button>
+                  <button (click)="editPost(post, i)" class="standard-icon-button" ngbDropdownItem>Edit</button>
+                  <button (click)="removePost(post, i)" class="standard-icon-button" ngbDropdownItem>Delete</button>
                 </div>
               </div>
             </div>

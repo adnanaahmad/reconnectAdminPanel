@@ -16,7 +16,9 @@ export class ConstantService {
     getUsers: `${environment.apiUrl}/admin/users`,
     updateUserStatus: `${environment.apiUrl}/admin/user-status`,
     createPost: `${environment.apiUrl}/feed/create`,
-    getNewsFeed: `${environment.apiUrl}/feed/news-feed`
+    getNewsFeed: `${environment.apiUrl}/feed/news-feed`,
+    updatePost: `${environment.apiUrl}/feed/update/`,
+    deletePost: `${environment.apiUrl}/feed/delete/`
   };
   appRoutePaths = {
     home: '/home',

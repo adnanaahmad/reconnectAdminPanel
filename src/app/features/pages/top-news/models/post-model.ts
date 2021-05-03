@@ -12,8 +12,9 @@ interface MediaModel{
 export interface TopNewsModel{
   posts: Array<PostModel>;
 }
-interface PostModel{
+export interface PostModel{
   title: string;
   description: string;
   media: Array<MediaModel>;
+  _id: string;
 }

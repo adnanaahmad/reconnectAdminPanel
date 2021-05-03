@@ -19,4 +19,10 @@ export class TopNewsService {
   createPost(data): Observable<any>{
     return this.helper.requestCall(this.method.post, this.apiRoutes.createPost, data);
   }
+  updatePost(data, id): Observable<any>{
+    return this.helper.requestCall(this.method.put, this.apiRoutes.updatePost + id, data);
+  }
+  removePost(id): Observable<any>{
+    return this.helper.requestCall(this.method.delete, this.apiRoutes.deletePost + id);
+  }
 }
