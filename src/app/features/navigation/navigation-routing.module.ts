@@ -17,6 +17,11 @@ const routes: Routes = [
         path: 'top-news',
         loadChildren: () => import('../pages/top-news/top-news.module').then(m => m.TopNewsModule)
       },
+      {
+        path: 'home-buying',
+        loadChildren: () => import('../pages/home-buying/home-buying.module').then(m => m.HomeBuyingModule)
+      },
+
     ]
   },
 ];
