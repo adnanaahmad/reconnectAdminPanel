@@ -7,11 +7,21 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 import { AbsIconButtonComponent } from './components/abs-icon-button/abs-icon-button.component';
 import {SafeUrlPipe} from './pipes/safe-url/safe-url.pipe';
 import { KebabButtonComponent } from './components/kebab-button/kebab-button.component';
+import {CreatePostComponent} from './components/create-post/create-post.component';
+import {AddExternalLinkComponent} from './components/add-external-link/add-external-link.component';
 
 @NgModule({
-  declarations: [IconButtonComponent, AbsIconButtonComponent, SafeUrlPipe, KebabButtonComponent],
+  declarations: [
+    IconButtonComponent,
+    AbsIconButtonComponent,
+    SafeUrlPipe,
+    KebabButtonComponent,
+    CreatePostComponent,
+    AddExternalLinkComponent
+  ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
   ],
     exports: [
       CommonModule,
@@ -23,6 +33,8 @@ import { KebabButtonComponent } from './components/kebab-button/kebab-button.com
       AbsIconButtonComponent,
       KebabButtonComponent,
       SafeUrlPipe,
+      CreatePostComponent,
+      AddExternalLinkComponent
     ]
 })
 export class SharedModule { }

@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ValidateFn} from 'codelyzer/walkerFactory/walkerFn';
-import {HelperService} from '../../../../../core/helper/helper.service';
-import {ConstantService} from '../../../../../core/constant/constant.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HelperService} from '../../../core/helper/helper.service';
+import {ConstantService} from '../../../core/constant/constant.service';
 
 @Component({
   selector: 'app-add-external-link',

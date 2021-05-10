@@ -1,6 +1,6 @@
 import { Component, OnInit, SecurityContext } from '@angular/core';
 import {StoreService} from '../../../../../core/store/store.service';
-import {CreatePostComponent} from '../../popus/create-post/create-post.component';
+import {CreatePostComponent} from '../../../../../shared/components/create-post/create-post.component';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ConstantService} from '../../../../../core/constant/constant.service';
 import {PostModel, TopNewsModel} from '../../models/post-model';

@@ -1,11 +1,11 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {HelperService} from '../../../../../core/helper/helper.service';
-import {StoreService} from '../../../../../core/store/store.service';
+import {HelperService} from '../../../core/helper/helper.service';
+import {StoreService} from '../../../core/store/store.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
-import {CreatePostModel, PostModel} from '../../models/post-model';
-import {ConstantService} from '../../../../../core/constant/constant.service';
-import {TopNewsService} from '../../services/top-news.service';
+import {CreatePostModel, PostModel} from '../../../features/pages/top-news/models/post-model';
+import {ConstantService} from '../../../core/constant/constant.service';
+import {TopNewsService} from '../../../features/pages/top-news/services/top-news.service';
 import {take} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
 
@@ -48,7 +48,8 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
       title: [null, Validators.required],
       description: [null],
       media: [null],
-      type: ['custom-post']
+      contentType: ['custom-post'],
+      type: ['news-article']
     })
   }
   onSubmit(): void{

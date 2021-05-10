@@ -1,6 +1,6 @@
   <div class="content">
     <div class="d-flex justify-content-center">
-      <div class="card" style="width: 1000px; padding: 20px">
+      <div style="width: 1000px">
         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
           <li [ngbNavItem]="1">
             <a [ngClass]="{'dark-nav-tab': !(store.theme|async), 'light-nav-tab': (store.theme|async)}" ngbNavLink>
@@ -8,10 +8,7 @@
             </a>
             <ng-template ngbNavContent>
               <div class="mt-5">
-                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-                  master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-                  keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-                  salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                <app-blog></app-blog>
               </div>
             </ng-template>
           </li>
@@ -21,12 +18,17 @@
             </a>
             <ng-template ngbNavContent>
               <div class="mt-5">
-                <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-                  farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                  ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                  helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-                  8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                  stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                <app-video></app-video>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a [ngClass]="{'dark-nav-tab': !(store.theme|async), 'light-nav-tab': (store.theme|async)}" ngbNavLink>
+              <p class="text-muted nav-heading">Resources</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="mt-5">
+                <app-resources></app-resources>
               </div>
             </ng-template>
           </li>
