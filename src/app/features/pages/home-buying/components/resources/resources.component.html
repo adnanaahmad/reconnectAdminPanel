@@ -1,3 +1,35 @@
-<div>
-  <app-icon-button style="float: right" [buttonClass]="'icon-pencil circle-border'"></app-icon-button>
+<div class="d-flex flex-column">
+  <div>
+    <app-icon-button (click)="addResource()" style="float: right" [buttonClass]="'icon-pencil circle-border'"></app-icon-button>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="row news-feed">
+      <ng-container *ngFor="let post of resources; let i = index">
+        <div class="news-feed-card col-xl-4 col-lg-6 col-md-6">
+          <div class="card">
+            <div class="media-files" *ngIf="post.media && post.media.length > 0">
+              <img *ngIf="post.media[0].type === constant.mediaType.IMAGE" [src]="post.media[0].url">
+              <video *ngIf="post.media[0].type === constant.mediaType.VIDEO" [src]="post.media[0].url" controls></video>
+              <div *ngIf="post.media[0].type === constant.mediaType.IFRAME" class="embed-responsive embed-responsive-16by9 iframe-video">
+                <iframe class="embed-responsive-item" [src]="post.media[0].url | safeUrl" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="card-header d-flex justify-content-between">
+              <h4 class="mb-0">{{post.title | titlecase}}</h4>
+              <div ngbDropdown placement="bottom-left" class="d-inline-block kebab-button">
+                <app-kebab-button ngbDropdownToggle id="dropdownBasic2"></app-kebab-button>
+                <div class="dropdown-menu-right dropdown-menu show" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <button (click)="editResource(post, i)" class="standard-icon-button" ngbDropdownItem>Edit</button>
+                  <button (click)="removeResource(post, i)" class="standard-icon-button" ngbDropdownItem>Delete</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>{{post.description}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
