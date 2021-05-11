@@ -3,8 +3,15 @@
   transition: none !important;
 }
 .light-nav-tab.active{
+  border-color: #b3b3b3 #b3b3b3;
   border-bottom-color: #f5f6fa;
   transition: none !important;
+}
+.light-nav-tab:hover{
+  border-color: #b3b3b3 #b3b3b3;
+}
+.light-nav-tab.active:hover{
+  border-color: #b3b3b3 #b3b3b3 #f5f6fa;
 }
 .nav-heading{
   font-weight: 500;
@@ -14,4 +21,7 @@
   .nav-heading{
     font-size: .9rem;
   }
+}
+.nav-tabs {
+  border-bottom-color: #b3b3b3;
 }
