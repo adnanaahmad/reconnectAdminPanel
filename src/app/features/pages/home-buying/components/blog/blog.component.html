@@ -1,3 +1,33 @@
-<div>
+<div *ngIf="!blog">
   <app-icon-button style="float: right" [buttonClass]="'icon-pencil circle-border'" (buttonEvent)="addBlog()"></app-icon-button>
+</div>
+<div class="d-flex c1" *ngIf="blog">
+  <div class="card">
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="media-files" *ngIf="blog.media[0]">
+          <img *ngIf="blog.media[0].type === constant.mediaType.IMAGE" [src]="blog.media[0].url">
+          <video *ngIf="blog.media[0].type === constant.mediaType.VIDEO" [src]="blog.media[0].url" controls></video>
+          <div *ngIf="blog.media[0].type === constant.mediaType.IFRAME" class="embed-responsive embed-responsive-16by9 iframe-video">
+            <iframe class="embed-responsive-item" [src]="blog.media[0].url | safeUrl" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="card-header d-flex justify-content-between">
+          <h4 class="mb-0">{{blog.title | titlecase}}</h4>
+          <div ngbDropdown placement="bottom-left" class="d-inline-block kebab-button">
+            <app-kebab-button ngbDropdownToggle id="dropdownBasic2"></app-kebab-button>
+            <div class="dropdown-menu-right dropdown-menu show" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+              <button (click)="editBlog(blog)" class="standard-icon-button" ngbDropdownItem>Edit</button>
+              <button (click)="removeBlog(blog)" class="standard-icon-button" ngbDropdownItem>Delete</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>{{blog.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

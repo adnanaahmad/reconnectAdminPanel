@@ -1,0 +1,32 @@
+.media-files img, .media-files video, .iframe-video{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.2857rem 0 0 0.2857rem;
+}
+.media-files{
+  height: 400px;
+  position: relative;
+}
+.c1{
+  margin-top: 70px;
+}
+@media screen and (max-width: 991px){
+  .dropdown-toggle:after{
+    display: none;
+  }
+}
+@media screen and (max-width: 425px){
+  .media-files{
+    height: 300px;
+  }
+}
+.card:hover .kebab-button{
+  opacity: 1;
+  transition: opacity .4s;
+}
+.kebab-button{
+  opacity: 0;
+  transition: opacity .4s;
+  z-index: 1000;
+}

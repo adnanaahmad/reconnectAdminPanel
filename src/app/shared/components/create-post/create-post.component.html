@@ -1,6 +1,7 @@
 <div *ngIf="!post.nextScreen" class="card mb-0">
   <div class="card-header d-flex justify-content-between align-items-start">
-    <h3 class="card-title text-align-center">{{edit ? 'Edit Post' : 'Create Post'}}</h3>
+    <h3 *ngIf="constant.POST_TYPE.NEWS_ARTICLE === type" class="card-title text-align-center">{{edit ? 'Edit Post' : 'Create Post'}}</h3>
+    <h3 *ngIf="constant.POST_TYPE.HOME_BUYING_BLOG === type" class="card-title text-align-center">{{edit ? 'Edit Blog' : 'Create Blog'}}</h3>
     <app-icon-button [buttonClass]="'icon-simple-remove'" (buttonEvent)="close()"></app-icon-button>
   </div>
   <div class="card-body">

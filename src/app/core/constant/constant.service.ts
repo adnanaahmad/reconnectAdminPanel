@@ -18,7 +18,8 @@ export class ConstantService {
     createPost: `${environment.apiUrl}/feed/create`,
     getNewsFeed: `${environment.apiUrl}/feed/news-feed`,
     updatePost: `${environment.apiUrl}/feed/update/`,
-    deletePost: `${environment.apiUrl}/feed/delete/`
+    deletePost: `${environment.apiUrl}/feed/delete/`,
+    getHomeBuyingFeed: `${environment.apiUrl}/feed/home-buying`
   };
   appRoutePaths = {
     home: '/home',
@@ -126,5 +127,11 @@ export class ConstantService {
     IMAGE: 'image',
     VIDEO: 'video',
     IFRAME: 'iframe'
+  }
+  POST_TYPE = {
+    NEWS_ARTICLE : 'news-article',
+    HOME_BUYING_RESOURCE : 'home-buying-resource',
+    HOME_BUYING_VIDEO : 'home-buying-video',
+    HOME_BUYING_BLOG : 'home-buying-blog'
   }
 }

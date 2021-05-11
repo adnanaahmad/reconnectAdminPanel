@@ -10,3 +10,8 @@
   font-weight: 500;
   font-size: 1.0624999875rem;
 }
+@media (max-width: 320px) {
+  .nav-heading{
+    font-size: .9rem;
+  }
+}

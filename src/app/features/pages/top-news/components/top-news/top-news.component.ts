@@ -40,6 +40,7 @@ export class TopNewsComponent implements OnInit {
   }
   createPost(): void{
     const modalRef = this.modalService.open(CreatePostComponent, this.constant.modalOption);
+    modalRef.componentInstance.type = this.constant.POST_TYPE.NEWS_ARTICLE;
     modalRef.result.then((result) => {
       if (result.status === 'yes') {
         this.topNews.posts.unshift(result.data);
@@ -50,6 +51,7 @@ export class TopNewsComponent implements OnInit {
   }
   editPost(post: PostModel, index: number): void{
     const modalRef = this.modalService.open(CreatePostComponent, this.constant.modalOption);
+    modalRef.componentInstance.type = this.constant.POST_TYPE.NEWS_ARTICLE;
     modalRef.componentInstance.edit = post;
     modalRef.result.then((result) => {
       if (result.status === 'yes') {

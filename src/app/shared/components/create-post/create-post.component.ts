@@ -15,6 +15,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./create-post.component.scss']
 })
 export class CreatePostComponent implements OnInit, AfterViewInit {
+  @Input() type: string;
   @Input() edit: PostModel;
   post: CreatePostModel = {} as CreatePostModel;
   constructor(private helper: HelperService,
@@ -49,11 +50,11 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
       description: [null],
       media: [null],
       contentType: ['custom-post'],
-      type: ['news-article']
+      type: [this.type]
     })
   }
   onSubmit(): void{
-    if (this.post.media.length > 0 || this.post.form.get('description').value) {
+    if (this.customValidation) {
       (this.edit ? this.topNewsService.updatePost({...this.post.form.value, media: this.post.media}, this.edit._id) :
         this.topNewsService.createPost({...this.post.form.value, media: this.post.media})).pipe(take(1)).subscribe(res => {
         this.activeModal.close({status: 'yes', data: res.result});
@@ -63,8 +64,40 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
         this.helper.handleApiError(error, `Failed to ${this.edit ? 'edit' : 'create'} post`);
       })
     } else {
-      this.toaster.error(`${this.constant.toasterBellIconHTML} No description or media attached`, '',
-        this.constant.toasterConfiguration.error);
+        this.errorHandling();
+    }
+  }
+  errorHandling(): void{
+    switch (this.type) {
+      case this.constant.POST_TYPE.HOME_BUYING_VIDEO:
+        this.toaster.error(`${this.constant.toasterBellIconHTML} No media attached`, '',
+          this.constant.toasterConfiguration.error);
+        break;
+      case this.constant.POST_TYPE.HOME_BUYING_RESOURCE:
+        this.toaster.error(`${this.constant.toasterBellIconHTML} No description`, '',
+          this.constant.toasterConfiguration.error);
+        break;
+      case this.constant.POST_TYPE.HOME_BUYING_BLOG:
+        this.toaster.error(`${this.constant.toasterBellIconHTML} ${ ( this.post.media.length === 0 && !this.post.form.get('description').value) ?
+        'No description or media attached' : !(this.post.media.length > 0) ? 'No media attached' : 'No description'}`, '',
+          this.constant.toasterConfiguration.error);
+        break;
+      default:
+        this.toaster.error(`${this.constant.toasterBellIconHTML} No description or media attached`, '',
+          this.constant.toasterConfiguration.error);
+        break;
+    }
+  }
+  get customValidation(): boolean{
+    switch (this.type) {
+      case this.constant.POST_TYPE.HOME_BUYING_VIDEO:
+        return this.post.media.length > 0;
+      case this.constant.POST_TYPE.HOME_BUYING_RESOURCE:
+        return this.post.form.get('description').value;
+      case this.constant.POST_TYPE.HOME_BUYING_BLOG:
+        return (this.post.media.length > 0 && this.post.form.get('description').value);
+      default:
+        return this.post.media.length > 0 || this.post.form.get('description').value;
     }
   }
   close(): void{
@@ -74,9 +107,15 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
     this.post.nextScreen = false;
   }
   goToAddExternalLink(): void{
-    this.post.media.length < 6 ? this.post.nextScreen = true :
-      this.toaster.error(`${this.constant.toasterBellIconHTML} Not more than 6 files can be posted`, '',
-      this.constant.toasterConfiguration.error);
+    if ( this.type === this.constant.POST_TYPE.NEWS_ARTICLE) {
+      this.post.media.length < 6 ? this.post.nextScreen = true :
+        this.toaster.error(`${this.constant.toasterBellIconHTML} Not more than 6 files can be posted`, '',
+          this.constant.toasterConfiguration.error);
+    } else {
+      this.post.media.length < 1 ? this.post.nextScreen = true :
+        this.toaster.error(`${this.constant.toasterBellIconHTML} Not more than 1 file can be posted`, '',
+          this.constant.toasterConfiguration.error);
+    }
   }
   addUrl(data): void{
     this.post.media.push(data);
