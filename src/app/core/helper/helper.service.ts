@@ -9,7 +9,8 @@ import {ValidateFn} from 'codelyzer/walkerFactory/walkerFn';
 import {AbstractControl} from '@angular/forms';
 import {StoreService} from '../store/store.service';
 import {take} from 'rxjs/operators';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import * as S3 from 'aws-sdk/clients/s3';
+import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,8 +20,7 @@ export class HelperService {
               private http: HttpClient,
               private toaster: ToastrService,
               private imageCompress: NgxImageCompressService,
-              private store: StoreService,
-              private domSanitizer: DomSanitizer) { }
+              private store: StoreService) { }
   originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return 0;
   }
@@ -144,5 +144,36 @@ export class HelperService {
   }
   validYoutubeUrl(mediaUrl): boolean{
     return !!mediaUrl.includes('youtube.com/watch');
+  }
+  uploadFile(file, format) {
+    const contentType = file.type;
+    const bucket = new S3(environment.s3Bucket);
+    const params = {
+      Bucket: environment.s3BucketName,
+      Key: file.name,
+      Body: file,
+      ACL: 'public-read',
+      ContentType: contentType
+    };
+    this.store.updateProgressBarLoading(true);
+    bucket.upload(params, (err, data) => {
+      if (err) {
+        this.toaster.error(`${this.constants.toasterBellIconHTML} There was an error uploading your file: ${err}`, '',
+          this.constants.toasterConfiguration.error);
+        this.store.updateProgressBarLoading(false);
+        (document.getElementById('media-img') as HTMLInputElement).value = null;
+        (document.getElementById('media-vid') as HTMLInputElement).value = null;
+        return false;
+      }
+      this.store.updateUploadFile({
+        type: format,
+        url:  data.Location
+      });
+      this.store.updateProgressBarLoading(false);
+      console.log('Successfully uploaded file.', data);
+      (document.getElementById('media-img') as HTMLInputElement).value = null;
+      (document.getElementById('media-vid') as HTMLInputElement).value = null;
+      return true;
+    });
   }
 }

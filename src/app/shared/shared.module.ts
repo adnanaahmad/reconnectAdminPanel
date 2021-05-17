@@ -9,6 +9,7 @@ import {SafeUrlPipe} from './pipes/safe-url/safe-url.pipe';
 import { KebabButtonComponent } from './components/kebab-button/kebab-button.component';
 import {CreatePostComponent} from './components/create-post/create-post.component';
 import {AddExternalLinkComponent} from './components/add-external-link/add-external-link.component';
+import {LoadingBarModule} from '@ngx-loading-bar/core';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import {AddExternalLinkComponent} from './components/add-external-link/add-exter
     CreatePostComponent,
     AddExternalLinkComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        LoadingBarModule,
+    ],
     exports: [
       CommonModule,
       ReactiveFormsModule,

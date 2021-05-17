@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {HelperService} from '../../../core/helper/helper.service';
 import {StoreService} from '../../../core/store/store.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,7 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss']
 })
-export class CreatePostComponent implements OnInit, AfterViewInit {
+export class CreatePostComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() type: string;
   @Input() edit: PostModel;
   post: CreatePostModel = {} as CreatePostModel;
@@ -31,6 +31,13 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
     this.helper.setModal();
     this.post.nextScreen = false;
     this.initializeForm();
+    this.post.subscription.push(
+      this.store.uploadFile.subscribe(res => {
+        if (res) {
+          this.post.media.push(res);
+        }
+      })
+    )
   }
   ngAfterViewInit() {
     if (this.edit){
@@ -42,8 +49,13 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
       this.cdr.detectChanges();
     }
   }
+  ngOnDestroy(): void {
+    this.store.updateUploadFile(null);
+    this.post.subscription.forEach(x => x.unsubscribe());
+  }
 
   initializeForm(): void {
+    this.post.subscription = [];
     this.post.media = [];
     this.post.form = this.fb.group({
       title: [null, Validators.required],
@@ -123,5 +135,17 @@ export class CreatePostComponent implements OnInit, AfterViewInit {
   }
   removeMediaFile(index: number): void{
     this.post.media.splice(index, 1);
+  }
+  uploadImageFile(file) {
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+    file = file.target.files.item(0);
+    validImageTypes.includes(file.type) ? this.helper.uploadFile(file, 'image') : this.toaster.error(`${this.constant.toasterBellIconHTML} Valid image formats: gif, jpg, jpeg and png`, '',
+      this.constant.toasterConfiguration.error);
+  }
+  uploadVideoFile(file) {
+    const validVideoTypes = ['video/mp4', 'video/ogg', 'video/webm'];
+    file = file.target.files.item(0);
+    validVideoTypes.includes(file.type) ? this.helper.uploadFile(file, 'video') : this.toaster.error(`${this.constant.toasterBellIconHTML} Valid video formats: mp4, ogg and webm`, '',
+      this.constant.toasterConfiguration.error);
   }
 }

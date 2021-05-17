@@ -38,9 +38,15 @@
         <label> Media </label>
         <div class="attachments d-flex justify-content-between align-items-center" [ngClass]="{'dark-border': !(store.theme|async), 'light-border': (store.theme|async)}">
           <p class="mb-0 text-muted">Add to your post</p>
-          <div class="d-flex justify-content-between post-icons">
-            <app-icon-button [buttonClass]="'icon-image-02'" ></app-icon-button>
-            <app-icon-button [buttonClass]="'icon-video-66'" ></app-icon-button>
+          <div class="d-flex justify-content-between post-icons" [ngStyle]="{'width' : type === constant.POST_TYPE.HOME_BUYING_VIDEO ? '60px' : '100px'}">
+            <ng-container *ngIf="type !== constant.POST_TYPE.HOME_BUYING_VIDEO">
+              <input accept="image/*" [disabled]="store.progressBarLoading|async" id="media-img" type="file" (change)="uploadImageFile($event)" class="media-input" #fileInput1>
+              <app-icon-button [buttonClass]="'icon-image-02'" (buttonEvent)="fileInput1.click()" ></app-icon-button>
+            </ng-container>
+            <ng-container>
+              <input accept="video/*" [disabled]="store.progressBarLoading|async" id="media-vid" type="file" (change)="uploadVideoFile($event)" class="media-input" #fileInput2>
+              <app-icon-button [buttonClass]="'icon-video-66'" (buttonEvent)="fileInput2.click()" ></app-icon-button>
+            </ng-container>
             <app-icon-button (buttonEvent)="goToAddExternalLink()" [buttonClass]="'icon-link-72'" ></app-icon-button>
           </div>
         </div>

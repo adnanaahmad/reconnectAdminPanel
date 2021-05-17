@@ -10,7 +10,8 @@ export class StoreService {
   theme = this.themeSubject.asObservable();
   private progressBarLoadingSubject = new BehaviorSubject<any>(null);
   progressBarLoading = this.progressBarLoadingSubject.asObservable();
-
+  private uploadFileSubject = new BehaviorSubject<any>(null);
+  uploadFile = this.uploadFileSubject.asObservable();
   constructor() { }
 
   updateTheme(data: boolean): void{
@@ -18,6 +19,9 @@ export class StoreService {
   }
   updateProgressBarLoading(data): void{
     this.progressBarLoadingSubject.next(data);
+  }
+  updateUploadFile(data): void{
+    this.uploadFileSubject.next(data);
   }
   getToken(): string{
     return localStorage.getItem('token');
