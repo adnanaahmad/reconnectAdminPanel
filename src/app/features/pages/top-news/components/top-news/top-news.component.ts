@@ -19,19 +19,21 @@ export class TopNewsComponent implements OnInit {
   constructor(public store: StoreService,
               private modalService: NgbModal,
               private configuration: NgbModalConfig,
-              private constant: ConstantService,
+              public constant: ConstantService,
               private topNewsService: TopNewsService,
               private helper: HelperService,
               private toaster: ToastrService) { }
 
   ngOnInit(): void {
     this.configuration.centered = true;
+    this.topNews.topNewsPageNumber = 1;
     this.getTopNews();
   }
   getTopNews(){
     this.store.updateProgressBarLoading(true);
-    this.topNewsService.getTopNews().pipe(take(1)).subscribe(res =>{
+    this.topNewsService.getTopNews(`?topNewsPageNumber=${this.topNews.topNewsPageNumber}`).pipe(take(1)).subscribe(res =>{
       this.topNews.posts = res.result.adminPosts;
+      this.topNews.adminPostsCount = res.result.adminPostsCount;
       this.store.updateProgressBarLoading(false);
     }, error => {
       this.helper.handleApiError(error, 'Failed to fetch news feed');
@@ -44,6 +46,7 @@ export class TopNewsComponent implements OnInit {
     modalRef.result.then((result) => {
       if (result.status === 'yes') {
         this.topNews.posts.unshift(result.data);
+        this.topNews.adminPostsCount = this.topNews.adminPostsCount + 1;
       }
     }, error => {
       console.log(error);
@@ -66,6 +69,7 @@ export class TopNewsComponent implements OnInit {
       this.topNews.posts.splice(index, 1);
       this.toaster.success(`${this.constant.toasterBellIconHTML} Post Deleted`, '',
         this.constant.toasterConfiguration.success);
+      this.topNews.adminPostsCount = this.topNews.adminPostsCount - 1;
     }, error => {
       this.helper.handleApiError(error, 'Failed to delete post');
     })
@@ -87,5 +91,14 @@ export class TopNewsComponent implements OnInit {
     arr.shift();
     arr.push(first);
     return arr;
+  }
+  loadMore(): void{
+    this.topNewsService.getTopNews(`?topNewsPageNumber=${this.topNews.topNewsPageNumber + 1}`).pipe(take(1)).subscribe(res =>{
+        this.topNews.posts = [...this.topNews.posts , ...res.result.adminPosts];
+        this.topNews.topNewsPageNumber = this.topNews.topNewsPageNumber + 1;
+        this.topNews.adminPostsCount = res.result.adminPostsCount;
+    }, error => {
+      this.helper.handleApiError(error, 'Failed to fetch news feed');
+    });
   }
 }

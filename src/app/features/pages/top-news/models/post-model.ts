@@ -14,6 +14,8 @@ interface MediaModel{
 }
 export interface TopNewsModel{
   posts: Array<PostModel>;
+  topNewsPageNumber: number;
+  adminPostsCount: number;
 }
 export interface PostModel{
   title: string;

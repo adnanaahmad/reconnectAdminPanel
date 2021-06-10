@@ -13,8 +13,8 @@ export class TopNewsService {
     this.apiRoutes = this.constant.apiRoutes;
     this.method = this.constant.apiMethod;
   }
-  getTopNews(): Observable<any> {
-    return this.helper.requestCall(this.method.get, this.apiRoutes.getNewsFeed);
+  getTopNews(data): Observable<any> {
+    return this.helper.requestCall(this.method.get, this.apiRoutes.getNewsFeed + data);
   }
   createPost(data): Observable<any>{
     return this.helper.requestCall(this.method.post, this.apiRoutes.createPost, data);
