@@ -1,4 +1,4 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {StoreService} from '../../../../../core/store/store.service';
 import {CreatePostComponent} from '../../../../../shared/components/create-post/create-post.component';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
