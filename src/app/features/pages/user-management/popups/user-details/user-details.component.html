@@ -15,7 +15,8 @@
       </div>
     </form>
   </div>
-  <div class="card-footer">
-    <button [disabled]="account.invalid" (click)="onSubmit()" class="btn btn-fill btn-primary" type="button">Save</button>
+  <div class="card-footer d-flex">
+    <button [disabled]="account.invalid" (click)="onSubmit()" class="btn btn-fill btn-primary mr-3" type="button">Save</button>
+    <button *ngIf="user.accountStatus === constant.accountStatus.APPROVED" (click)="resendEmailVerification()" class="btn btn-fill btn-primary" type="button">Resend Email Verification</button>
   </div>
 </div>

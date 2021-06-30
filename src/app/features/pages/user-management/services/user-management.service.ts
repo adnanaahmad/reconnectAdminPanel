@@ -19,4 +19,7 @@ export class UserManagementService {
   updateUserStatus(data): Observable<any>{
     return this.helper.requestCall(this.method.put, this.apiRoutes.updateUserStatus, data);
   }
+  resendEmailVerification(data): Observable<any>{
+    return this.helper.requestCall(this.method.post, this.apiRoutes.resendEmailVerification, data);
+  }
 }

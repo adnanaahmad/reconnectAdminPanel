@@ -19,7 +19,8 @@ export class ConstantService {
     getNewsFeed: `${environment.apiUrl}/feed/news-feed`,
     updatePost: `${environment.apiUrl}/feed/update/`,
     deletePost: `${environment.apiUrl}/feed/delete/`,
-    getHomeBuyingFeed: `${environment.apiUrl}/feed/home-buying`
+    getHomeBuyingFeed: `${environment.apiUrl}/feed/home-buying`,
+    resendEmailVerification: `${environment.apiUrl}/user/resend-complete-registration-email`
   };
   appRoutePaths = {
     home: '/home',

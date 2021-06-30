@@ -30,7 +30,7 @@ export class UserDetailsComponent implements OnInit {
     this.account = this.fb.group({
       userId: [this.user._id],
       status: [this.user.accountStatus]
-    })
+    });
   }
   onSubmit(): void{
     this.userService.updateUserStatus(this.account.value).pipe(take(1)).subscribe(res => {
@@ -44,5 +44,13 @@ export class UserDetailsComponent implements OnInit {
   close(): void{
     this.activeModal.close({status: 'no'});
   }
-
+  resendEmailVerification(): void{
+    this.userService.resendEmailVerification({email: this.user.email}).pipe(take(1)).subscribe(res => {
+      this.activeModal.close({status: 'no'});
+      this.toaster.success(`${this.constant.toasterBellIconHTML} Verification email sent successfully`, '',
+        this.constant.toasterConfiguration.success);
+    }, error => {
+      this.helper.handleApiError(error, 'Failed to send verification email');
+    })
+  }
 }
