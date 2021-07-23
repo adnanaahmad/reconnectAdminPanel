@@ -21,7 +21,10 @@ const routes: Routes = [
         path: 'home-buying',
         loadChildren: () => import('../pages/home-buying/home-buying.module').then(m => m.HomeBuyingModule)
       },
-
+      {
+        path: 'team-dynasty',
+        loadChildren: () => import('../pages/team-dynasty/team-dynasty.module').then(m => m.TeamDynastyModule)
+      },
     ]
   },
 ];

@@ -1,0 +1,37 @@
+<div class="content">
+  <ng-container *ngIf="!(store.progressBarLoading|async)">
+    <div class="d-flex flex-column add-button-parent" *ngIf="!data">
+      <div class="d-flex justify-content-center mb-3">
+        <app-icon-button [buttonClass]="'icon-simple-add'" [buttonSizeClass]="!(store.theme|async) ? 'add-button-dynasty-dark' : 'add-button-dynasty-light'" (buttonEvent)="addNode(null)"></app-icon-button>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p class="root-node-txt">Add root node</p>
+      </div>
+    </div>
+    <div class="org-chart mt-5">
+      <p-organizationChart [value]="data" selectionMode="single">
+        <ng-template let-node pTemplate="default">
+          <div class="d-flex node" [ngClass]="{'dark-node': !(store.theme|async), 'light-node': (store.theme|async)}">
+            <img *ngIf="node.profilePictureUrl" class="image" [src]="node.profilePictureUrl">
+            <img *ngIf="!node.profilePictureUrl" src = "/assets/custom-icons/profile.svg" class="dummy-img" [ngClass]="{'user-background-dark': !(store.theme|async), 'user-background-light': (store.theme|async)}">
+            <div class="d-flex flex-column">
+              <p class="role text-nowrap">{{'Real Estate Agent'}}</p>
+              <p class="name text-nowrap">{{(node.firstName + ' ' + node.lastName) | titlecase}}</p>
+              <div class="d-flex justify-content-between">
+                <img [ngbTooltip]="helper.isArray(node.phoneNumber) ? node.phoneNumber[0] : node.phoneNumber" class="phone-icon" src="/assets/custom-icons/call.svg">
+                <img (click)="helper.sendEmail(node.email)" class="email-icon" src="assets/custom-icons/envelope.svg">
+                <div ngbDropdown placement="bottom-left" class="d-inline-block kebab-button">
+                  <img ngbDropdownToggle id="dropdownBasic3" class="menu-icon" src="assets/custom-icons/menu.svg">
+                  <div class="dropdown-menu-right dropdown-menu show" ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                    <button (click)="addNode(node._id)" class="standard-icon-button" ngbDropdownItem>Add</button>
+                    <button (click)="deleteNode(node._id)" class="standard-icon-button" ngbDropdownItem>Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </ng-container>
+</div>

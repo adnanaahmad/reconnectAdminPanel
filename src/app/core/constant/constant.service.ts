@@ -20,13 +20,18 @@ export class ConstantService {
     updatePost: `${environment.apiUrl}/feed/update/`,
     deletePost: `${environment.apiUrl}/feed/delete/`,
     getHomeBuyingFeed: `${environment.apiUrl}/feed/home-buying`,
-    resendEmailVerification: `${environment.apiUrl}/user/resend-complete-registration-email`
+    resendEmailVerification: `${environment.apiUrl}/user/resend-complete-registration-email`,
+    getTeamDynasty: `${environment.apiUrl}/admin/team-dynasty`,
+    getRealEstateAgents: `${environment.apiUrl}/admin/non-teamdynasty-users`,
+    addNode: `${environment.apiUrl}/admin/team-dynasty/add`,
+    deleteNode: `${environment.apiUrl}/admin/team-dynasty/delete`
   };
   appRoutePaths = {
     home: '/home',
     userManagement: '/home/user-management',
     topNews: '/home/top-news',
-    homeBuying: '/home/home-buying'
+    homeBuying: '/home/home-buying',
+    teamDynasty: '/home/team-dynasty'
   }
   appRoutes = [
     {
@@ -47,7 +52,12 @@ export class ConstantService {
       icon: 'icon-basket-simple',
       class: ''
     },
-
+    {
+      path: this.appRoutePaths.teamDynasty,
+      title: 'Team Dynasty',
+      icon: 'icon-molecule-40',
+      class: ''
+    }
   ];
   apiMethod = {
     get: 'get',

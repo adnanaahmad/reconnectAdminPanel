@@ -1,0 +1,38 @@
+<div class="card mb-0">
+  <div class="card-header d-flex justify-content-between align-items-start">
+    <h3 class="card-title text-align-center">Real Estate Agent</h3>
+    <app-icon-button [buttonClass]="'icon-simple-remove'" (buttonEvent)="close()"></app-icon-button>
+  </div>
+  <div class="card-body cb">
+
+
+    <div class="single-card d-flex justify-content-between" *ngFor="let member of members; let i = index" [ngClass]="{'dark-card-border': !(store.theme|async), 'light-card-border': (store.theme|async)}">
+      <div  class="d-flex div-1">
+        <div class="profile-img">
+          <img *ngIf="member.profilePictureUrl" [src] = "member.profilePictureUrl" class="display-img">
+          <img *ngIf="!member.profilePictureUrl" src = "/assets/custom-icons/profile.svg" class="dummy-img" [ngClass]="{'user-background-dark': !(store.theme|async), 'user-background-light': (store.theme|async)}">
+        </div>
+        <div class="member-info d-flex flex-column">
+          <div style="" class="d-flex rating">
+            <p class="name text-nowrap">{{ member.firstName }} {{member.lastName}}</p>
+          </div>
+          <div class="mt-auto">
+            <div class="number d-flex mb-1">
+              <img src="/assets/custom-icons/call.svg" class="img-fluid">
+              <p>{{ helper.isArray(member.phoneNumber) ? member.phoneNumber[0] : member.phoneNumber }}</p>
+
+            </div>
+            <div class="question d-flex" (click)="helper.sendEmail(member.email)">
+              <img src="/assets/custom-icons/envelope.svg" class="img-fluid">
+              <p>Ask a question</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <app-icon-button [buttonClass]="'icon-simple-add'" (buttonEvent)="addRealEstateAgent(member)"></app-icon-button>
+      </div>
+    </div>
+  </div>
+</div>
+

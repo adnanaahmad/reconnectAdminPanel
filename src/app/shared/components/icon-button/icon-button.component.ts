@@ -7,7 +7,8 @@ import {StoreService} from '../../../core/store/store.service';
   styleUrls: ['./icon-button.component.scss']
 })
 export class IconButtonComponent implements OnInit {
-  @Input() buttonClass : string
+  @Input() buttonClass : string;
+  @Input() buttonSizeClass: string;
   @Output() buttonEvent = new EventEmitter<any>();
   constructor(public store: StoreService) { }
 

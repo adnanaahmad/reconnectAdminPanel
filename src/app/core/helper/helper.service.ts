@@ -176,4 +176,26 @@ export class HelperService {
       return true;
     });
   }
+  constructTree(data, dataMap, network): Array<any> {
+    const tree = [];
+    console.log(data, dataMap);
+    data.forEach((node) => {
+      const parent = dataMap[network[node.parent] ? network[node.parent].user : undefined];
+      dataMap[node.user].expanded = true;
+      dataMap[node.user] = {...dataMap[node.user], ...node}
+      if (parent) {
+        (parent.children || (parent.children = [])).push(dataMap[node.user]);
+      } else {
+        tree.push(dataMap[node.user]);
+      }
+    });
+    console.log(tree);
+    return tree;
+  }
+  sendEmail(email: string): void{
+    window.location.href = (`mailto:${email}`);
+  }
+  isArray(array): boolean{
+    return  Array.isArray(array);
+  }
 }

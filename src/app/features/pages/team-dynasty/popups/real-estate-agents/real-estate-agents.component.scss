@@ -1,0 +1,37 @@
+.single-card{
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.display-img{
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+.dummy-img{
+  height: 70px;
+  width: 70px;
+  padding: 20px;
+}
+.profile-img{
+  margin-right: 10px;
+}
+.dark-card-border{
+  border: 1px solid var(--extraLightGrayDark);
+}
+.light-card-border{
+  border: 1px solid var(--extraLightGrayLight);
+}
+.number p, .question p{
+  font-size: 10px;
+  margin-bottom: 0;
+}
+.number img, .question img{
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+}
+.cb{
+  max-height: 600px;
+  overflow: auto;
+}

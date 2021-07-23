@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --pinkProgressBar: #e04dca
+  --pinkProgressBar: #e04dca;
+  --extraLightGrayLight: #E7EDF8;
+  --extraLightGrayDark: #e7edf824;
+  --darkGrayColor: #262a3c;
+  --lightGray: #9a9a9a;
+  --darkGrayColorInLightMode: #222a42b3;
 }
 .d-flex{
   display: flex;
@@ -37,4 +42,27 @@
 }
 .standard-icon-button:focus{
   outline: none;
+}
+.user-background-light{
+  background: var(--extraLightGrayLight);
+}
+.user-background-dark{
+  background: var(--extraLightGrayDark);
+}
+.add-button-dynasty-dark, .add-button-dynasty-light{
+  font-size: 52px !important;
+  border-radius: 100px;
+  padding: 40px;
+}
+.add-button-dynasty-dark{
+  border: 2px solid var(--lightGray);
+}
+.add-button-dynasty-dark:hover{
+  border-color: white;
+}
+.add-button-dynasty-light{
+  border: 2px solid var(--darkGrayColorInLightMode);
+}
+.add-button-dynasty-light:hover{
+  border-color: black;
 }
